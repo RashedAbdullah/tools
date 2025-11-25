@@ -1,65 +1,99 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import { FileText, Code, Database, Settings } from "lucide-react";
 
-export default function Home() {
+const HomePage = () => {
+  const tools = [
+    {
+      name: "এক্সেল টু JSON",
+      description: "এক্সেল ফাইলকে JSON ফরম্যাটে কনভার্ট করুন",
+      href: "/excel-to-json",
+      icon: FileText,
+      color: "bg-blue-500",
+    },
+    {
+      name: "কোড কনভার্টার",
+      description: "বিভিন্ন প্রোগ্রামিং ভাষার মধ্যে কোড কনভার্ট করুন",
+      href: "/code-converter",
+      icon: Code,
+      color: "bg-green-500",
+    },
+    {
+      name: "ডাটা ভ্যালিডেটর",
+      description: "বিভিন্ন ডাটা ফরম্যাট ভ্যালিডেট করুন",
+      href: "/data-validator",
+      icon: Database,
+      color: "bg-purple-500",
+    },
+    {
+      name: "সেটিংস জেনারেটর",
+      description: "কনফিগারেশন ফাইল জেনারেট করুন",
+      href: "/settings-generator",
+      icon: Settings,
+      color: "bg-orange-500",
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Hero Section */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          আপনার <span className="text-blue-600">টুলকিট</span>
+        </h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          সকল প্রয়োজনীয় টুল একই স্থানে। সময় বাঁচান, উৎপাদনশীলতা বাড়ান,
+          এবং আপনার কাজকে আরও সহজ করে তুলুন।
+        </p>
+      </div>
+
+      {/* Tools Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+        {tools.map((tool) => {
+          const Icon = tool.icon;
+          return (
+            <Link
+              key={tool.name}
+              href={tool.href}
+              className="group bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <div className={`inline-flex items-center justify-center w-12 h-12 ${tool.color} rounded-lg mb-4 group-hover:scale-110 transition-transform`}>
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {tool.name}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {tool.description}
+              </p>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Stats Section */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">10+</div>
+            <div className="text-gray-600">টুলস</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-green-600 mb-2">100%</div>
+            <div className="text-gray-600">ফ্রি</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+            <div className="text-gray-600">এভেইলেবল</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-orange-600 mb-2">1000+</div>
+            <div className="text-gray-600">ইউজার</div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;
